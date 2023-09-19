@@ -1,5 +1,5 @@
 {
-  "name": "tailwindcss-flexgrid",
+  "name": "tailwindcss-grid-system",
   "version": "1.0.0",
   "description": "Tailwind CSS plugin that generates Bootstrap's flexbox grid",
   "main": "dist/main.js",
@@ -13,12 +13,12 @@
     "tailwindcss",
     "grid",
     "flex",
-    "flexgrid",
-    "tailwindcss-flexgrid"
+    "flexgrid"
   ],
   "author": "Hamidreza Firouzi",
   "license": "MIT",
   "devDependencies": {
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2"
   }
 }
