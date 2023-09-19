@@ -72,9 +72,7 @@ expose a `.container` class.
     responding to `[dir=ltr]` / `[dir=rtl]`)
   - `respectImportant` (default - `true`) - whether it should respect the `important`
     root config option
-
-
-## Related
+  - `prefix` (default - `twg`) - css variables prefix 
 
 [version-badge]: https://badge.fury.io/js/tailwindcss-grid-system.svg
 [version]: https://www.npmjs.com/package/tailwindcss-grid-system
