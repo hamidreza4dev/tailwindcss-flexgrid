@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "tsc ./lib/main.ts"
+    "build": "tsc"
   },
   "keywords": [
     "tailwindcss",
