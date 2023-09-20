@@ -20,7 +20,7 @@ export default plugin.withOptions(
       containerMaxWidths: {},
       rtl: false,
       respectImportant: true,
-    },
+    }
   ) =>
     function (options: PluginAPI) {
       const { addComponents, config, corePlugins } = options;
@@ -39,14 +39,14 @@ export default plugin.withOptions(
 
       if (generateContainer && corePlugins("container")) {
         console.warn(
-          `⚠️  The "container" core plugin is enabled and you're also generating ".container" class with the tailwindcss-flexgrid plugin. This might lead to unexpected styling issues, disable either of one.`,
+          `⚠️  The "container" core plugin is enabled and you're also generating ".container" class with the tailwindcss-flexgrid plugin. This might lead to unexpected styling issues, disable either of one.`
         );
       }
 
       const screenKeys = Object.keys(screens);
       const columns = Array.from(
         Array(gridColumns),
-        (_value, index) => index + 1,
+        (_value, index) => index + 1
       );
       const rowColsSteps = columns.slice(0, Math.floor(gridColumns / 2));
 
@@ -68,10 +68,10 @@ export default plugin.withOptions(
                   marginRight: setImportant("auto"),
                   marginLeft: setImportant("auto"),
                   paddingRight: setImportant(
-                    `var(--bs-gutter-x, calc(${gridGutterWidth} / 2))`,
+                    `var(--bs-gutter-x, calc(${gridGutterWidth} / 2))`
                   ),
                   paddingLeft: setImportant(
-                    `var(--bs-gutter-x, calc(${gridGutterWidth} / 2))`,
+                    `var(--bs-gutter-x, calc(${gridGutterWidth} / 2))`
                   ),
                 },
               },
@@ -79,13 +79,13 @@ export default plugin.withOptions(
                 [`@screen ${name}`]: {
                   ".container": {
                     maxWidth: setImportant(
-                      containerMaxWidths[name] || screens[name],
+                      containerMaxWidths[name] || screens[name]
                     ),
                   },
                 },
               })),
             ],
-            { respectImportant },
+            { respectImportant }
           );
         }
       }
@@ -102,8 +102,8 @@ export default plugin.withOptions(
               display: "flex",
               flexWrap: "wrap",
               marginTop: "calc(var(--bs-gutter-y) * -1)",
-              marginRight: "calc(var(--bs-gutter-x) / -1)",
-              marginLeft: "calc(var(--bs-gutter-x) / -1)",
+              marginRight: "calc(var(--bs-gutter-x) / -2)",
+              marginLeft: "calc(var(--bs-gutter-x) / -2)",
               "& > *": {
                 boxSizing: "border-box",
                 flexShrink: `${0}`,
@@ -115,7 +115,7 @@ export default plugin.withOptions(
               },
             },
           },
-          { respectImportant },
+          { respectImportant }
         );
       }
 
@@ -157,7 +157,7 @@ export default plugin.withOptions(
               },
             })),
           ],
-          { respectImportant },
+          { respectImportant }
         );
       }
 
@@ -179,7 +179,7 @@ export default plugin.withOptions(
                   };
             }) as Record<string, {}>[]),
           ],
-          { respectImportant },
+          { respectImportant }
         );
       }
 
@@ -197,7 +197,7 @@ export default plugin.withOptions(
                 "--bs-gutter-y": value,
               },
             })) as Record<string, {}>[],
-            { respectImportant },
+            { respectImportant }
           );
         }
       }
@@ -216,8 +216,8 @@ export default plugin.withOptions(
               [`.order-${size}`]: { order: `${size}` },
             })),
           ],
-          { respectImportant },
+          { respectImportant }
         );
       }
-    },
+    }
 );
