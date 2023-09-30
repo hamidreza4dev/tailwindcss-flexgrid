@@ -4,33 +4,31 @@ import { PluginAPI } from "tailwindcss/types/config";
 
 export default plugin.withOptions(
   (
-    pluginOptions: {
-      gridColumns: number;
-      gridGutterWidth: string;
-      gridGutters: Record<string, string>;
-      generateContainer: boolean;
-      containerMaxWidths: Record<any, any>;
-      rtl: boolean;
-      respectImportant: boolean;
-    } = {
-      gridColumns: 12,
-      gridGutterWidth: "1.5rem",
-      gridGutters: (theme?.spacing as Record<string, string>) || {},
-      generateContainer: true,
-      containerMaxWidths: {},
-      rtl: false,
-      respectImportant: true,
-    }
-  ) =>
-    function (options: PluginAPI) {
-      const { addComponents, config, corePlugins } = options;
+      pluginOptions: {
+        gridColumns: number;
+        gridGutterWidth: string;
+        generateContainer: boolean;
+        containerMaxWidths: Record<any, any>;
+        rtl: boolean;
+        respectImportant: boolean;
+      } = {
+        gridColumns: 12,
+        gridGutterWidth: "1.5rem",
+        generateContainer: true,
+        containerMaxWidths: {},
+        rtl: false,
+        respectImportant: true,
+      }
+    ) =>
+    (options: PluginAPI) => {
+      const { addComponents, config, corePlugins, matchUtilities } = options;
       const screens = config("theme.screens");
+      const gridGutters = config("theme.gridGutters");
       const important = config("important");
 
       const {
         gridColumns,
         gridGutterWidth,
-        gridGutters,
         generateContainer,
         containerMaxWidths,
         rtl,
@@ -200,6 +198,15 @@ export default plugin.withOptions(
             { respectImportant }
           );
         }
+
+        matchUtilities(
+          {
+            g: (value) => ({ "--bs-gutter-x": value, "--bs-gutter-y": value }),
+            gx: (value) => ({ "--bs-gutter-x": value }),
+            gy: (value) => ({ "--bs-gutter-y": value }),
+          },
+          { values: config("theme.gridGutters"), respectImportant }
+        );
       }
 
       {
@@ -219,5 +226,12 @@ export default plugin.withOptions(
           { respectImportant }
         );
       }
-    }
+    },
+  function (options) {
+    return {
+      theme: {
+        gridGutters: (theme?.spacing as Record<string, string>) || {},
+      },
+    };
+  }
 );
